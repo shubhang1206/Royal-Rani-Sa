@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Royal Rani Sa</title>
+  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="Logo" class="logo-image">
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="store.html">Store</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="slider">
+    <div class="slides">
+      <img src="assets/1.jpg" class="slide" alt="Slide 1">
+      <img src="assets/2.jpg" class="slide" alt="Slide 2">
+      <img src="assets/1.jpg" class="slide" alt="Slide 3">
+    </div>
+    <button class="prev" onclick="prevSlide()">❮</button>
+    <button class="next" onclick="nextSlide()">❯</button>
+  </div>
+  <script src="slider.js"></script>
+  <section class="about">
+    <h1>About Us</h1>
+    <div class="about-info" id="about">
+      <div class="about-img">
+        <img src="assets/aboutus.jpg" alt="about-us">
+      </div>
+      <div>
+        <p> Royal Rani Sa is a premier online clothing store offering a wide range of
+          elegant and trendy women's apparel. Our story is one of passion,
+          creativity, and a deep-rooted commitment to empowering women
+          through fashion. We aim to provide a seamless online shopping
+          experience, where every woman can find the perfect outfit that reflects
+          her unique style and personality. Our team is dedicated to curating a
+          collection that stands out, making Royal Rani Sa the ultimate
+          destination for fashion-forward women.
+        </p>
+      </div>
+    </div>
+  </section>
+  <style>
+   header {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 1rem;
+}
+
+.reel {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reel video {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Lightbox Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal video {
+  width: 90%;
+  max-width: 700px;
+  max-height: 70vh;
+  border-radius: 10px;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+}
+  </style>
+  </head>
+
+  <body>
+
+    <header>
+      <h1>Our Showcase</h1>
+      <p>Explore our creative reels</p>
+    </header>
+
+    <main class="gallery">
+      <div class="reel" onclick="openModal('video1')">
+        <video src="assets/1.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video2')">
+        <video src="assets/2.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video3')">
+        <video src="assets/3.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video4')">
+        <video src="assets/4.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video5')">
+        <video src="assets/5.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video6')">
+        <video src="assets/6.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video7')">
+        <video src="assets/7.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video3')">
+        <video src="assets/3.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video4')">
+        <video src="assets/4.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video5')">
+        <video src="assets/5.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video6')">
+        <video src="assets/6.mp4" muted autoplay loop></video>
+      </div>
+      <div class="reel" onclick="openModal('video7')">
+        <video src="assets/7.mp4" muted autoplay loop></video>
+      </div>
+      <!-- Add more reels as needed -->
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="videoModal">
+      <span class="modal-close" onclick="closeModal()">✖</span>
+      <video id="modalVideo" controls></video>
+    </div>
+
+    <script>
+      const videos = {
+        video1: 'assets/1.mp4',
+        video2: 'assets/2.mp4',
+        video3: 'assets/3.mp4',
+        video4: 'assets/4.mp4',
+        video5: 'assets/5.mp4',
+        video6: 'assets/6.mp4',
+        video7: 'assets/7.mp4'
+      };
+
+      function openModal(id) {
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        modalVideo.src = videos[id];
+        modal.classList.add('active');
+        modalVideo.play();
+      }
+
+      function closeModal() {
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        modal.classList.remove('active');
+        modalVideo.pause();
+        modalVideo.src = '';
+      }
+    </script>
+    <footer class="glass-footer">
+      <nav>
+        <ul class="nav-links1">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="store.html">Store</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2025 Our Showcase. All rights reserved.</p>
+    </footer>
+  </body>
+
+</html>
